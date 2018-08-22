@@ -11,7 +11,7 @@ Arrancar Dancer:
 
 Arrancar Dancer con autoreload luego de hacer cambios:
 
-	$ plackup -L -p 3000 Shotgun app.pl
+	$ plackup -L Shotgun app.pl -p 3000
 
 Arrancar en modo de producción con workers:
 
@@ -37,9 +37,6 @@ Fuentes:
 
 + http://blog.endpoint.com/2015/01/cleaner-redirection-in-perl-dancer.html
 + https://metacpan.org/pod/Dancer2::Manual#response_headers
-+ https://metacpan.org/pod/DBIx::Class
-+ https://metacpan.org/pod/DBIx::Class::Schema
-+ https://metacpan.org/pod/release/ARCANEZ/DBIx-Class-0.08126/lib/DBIx/Class/Schema.pm
 + https://www.perlmonks.org/?node_id=1114821
 + https://metacpan.org/pod/Dancer2::Tutorial
 + https://perlmaven.com/refactoring-dancer2-using-before-hook
@@ -49,3 +46,4 @@ Fuentes:
 + https://stackoverflow.com/questions/1814196/quickly-getting-to-yyyy-mm-dd-hhmmss-in-perl
 + http://dancer-users.dancer.narkive.com/se0ZYJ6t/dancer2-session-destroy-fails
 + https://stackoverflow.com/questions/23262932/custom-404-route-not-matching-website-root
++ https://metacpan.org/pod/distribution/MongoDB/lib/MongoDB/Tutorial.pod
