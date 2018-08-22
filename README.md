@@ -7,15 +7,15 @@ Instalación de paquetes de CPANM
 
 Arrancar Dancer:
 
-	$ plackup -r bin/app.psgi
+	$ plackup -r app.pl
 
 Arrancar Dancer con autoreload luego de hacer cambios:
 
-	$ plackup -L Shotgun bin/app.psgi
+	$ plackup -L -p 3000 Shotgun app.pl
 
 Arrancar en modo de producción con workers:
 
-	$ plackup -E deployment -s Starman --workers=50 -p 5000 -a bin/app.psgi
+	$ plackup -E deployment -s Starman --workers=50 -p 5000 -a app.pl
 
 ### Mmigraciones
 
