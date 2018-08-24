@@ -10,7 +10,7 @@ use Encode qw(decode encode);
 use Data::Dumper;
 
 my $client = MongoDB->connect();
-my $db = $client->get_database('demo');
+my $db = $client->get_database('comentarios');
 
 # hook a todos los request
 hook before => sub {
@@ -58,12 +58,38 @@ sub listar {
   status $status;
   return Encode::decode('utf8', JSON::to_json($rpta));
 };
+# handler de 'comentario'
+sub comentario_crear {
+  my $rpta = '';
+  my $status = 200;
+  my $data = JSON::XS::decode_json(Encode::encode_utf8(param('data')));
+  try {
+    my $comentarios = $db->get_collection('comentarios');
+    my $doc = $comentarios->insert_one($data);
+    $rpta = $doc->inserted_id . '';
+  } catch {
+    my %temp = (
+      tipo_mensaje => 'error',
+      mensaje => [
+        'Se ha producido un error en crear el comentario',
+        $@->{'msg'},
+      ],
+    );
+    $status = 500;
+    $rpta = JSON::to_json(\%temp);
+  };
+  status $status;
+  return Encode::decode('utf8', $rpta);
+};
 # directorio de archivos estáticos
 public: '/public';
 # rutas
 get '/' => \&home;
 get '/hola' => \&demo;
 get '/listar' => \&listar;
+# rutas comentario
+post '/comentario/crear' => \&comentario_crear;
+# ruta not_found
 any qr{.*} => \&not_found;
 # inicio de la aplicación
 dance;
