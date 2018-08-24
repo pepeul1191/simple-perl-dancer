@@ -8,6 +8,7 @@ use Try::Tiny;
 use JSON::Parse 'parse_json';
 use Encode qw(decode encode);
 use Data::Dumper;
+use DateTime;
 
 my $client = MongoDB->connect();
 my $db = $client->get_database('comentarios');
@@ -65,6 +66,7 @@ sub comentario_crear {
   my $data = JSON::XS::decode_json(Encode::encode_utf8(param('data')));
   try {
     my $comentarios = $db->get_collection('comentarios');
+    $data->{'momento'} = DateTime->now;
     my $doc = $comentarios->insert_one($data);
     $rpta = $doc->inserted_id . '';
   } catch {
